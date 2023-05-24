@@ -36,4 +36,11 @@ public class CustomerDao {
                 .map(i->new Customer(i,"customer"+i));
     }
 
+    public Flux<Customer> getCustomerList(){
+        return Flux.range(1,50)
+                .delayElements(Duration.ofSeconds(1))
+                .doOnNext(i->System.out.println("processing count:"+i))
+                .map(i->new Customer(i,"customer"+i));
+    }
+
 }
